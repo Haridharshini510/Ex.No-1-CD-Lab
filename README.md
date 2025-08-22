@@ -2,9 +2,9 @@
 
 # IMPLEMENTATION OF SYMBOL TABLE
 
-# Register Number :
+# Register Number :212224040098
 
-# Date :
+# Date :22/08/25
 
 # AIM:
 
@@ -22,8 +22,73 @@ To write a C program to implement a symbol table.
 8. Stop the program.
 
 # PROGRAM:
+```
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX_EXPRESSION_SIZE 100
+
+int main() {
+	int i = 0, j = 0, x = 0, n, flag = 0,k;
+	char b[MAX_EXPRESSION_SIZE], d[15], c, srch;
+
+	printf("Enter the Expression terminated by $: ");
+	while ((c = getchar()) != '$' && i < MAX_EXPRESSION_SIZE - 1) {
+		b[i++] = c;
+	}
+	b[i] = '\0';
+	n = i - 1;
+
+	printf("\nGiven Expression: %s\n", b);
+
+	printf("\nSymbol Table\n");
+	printf("Symbol\tType\t\tAddress\n");
+
+	for (j = 0; j <= n; j++) {
+		c = b[j];
+		if (isalpha((unsigned char)c)) {
+			int alreadyExists = 0;
+			for (k = 0; k < x; k++) {
+				if (d[k] == c) {
+					alreadyExists = 1;
+					break;
+				}
+			}
+
+			if (!alreadyExists) {
+				d[x] = c;
+				printf("%c\tidentifier\t%p\n", c, (void*)&d[x]);
+				x++;
+			}
+		}
+	}
+
+	// Clear input buffer
+	while ((c = getchar()) != '\n' && c != EOF);
+
+	printf("\nEnter the symbol to search: ");
+	srch = getchar();
+
+	for (i = 0; i < x; i++) {
+		if (srch == d[i]) {
+			printf("Symbol Found at address %p",(void*)&d[i]);
+			flag = 1;
+			break;
+		}
+	}
+	if (flag == 0)
+		printf("Symbol Not Found\n");
+
+	return 0;
+}
+```
 
 # OUTPUT:
+<img width="603" height="640" alt="image" src="https://github.com/user-attachments/assets/df519b03-c013-4e1b-b808-c9b175057e89" />
+<img width="603" height="640" alt="image" src="https://github.com/user-attachments/assets/4e7a6590-0ac9-4f0e-84d5-6d732b4b1ced" />
+
 
 # RESULT:
 
